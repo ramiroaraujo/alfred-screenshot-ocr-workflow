@@ -16,7 +16,7 @@ Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+o``
 
 > screencapture gif here
 
-You can use the keyword trigger to override the default language config and make a capture with a different language. Say you have English config, but you're browsing a Spanish webpage and want to capture some text; you don't want to change the config to spanish, you'll just use it this time.
+You can use the keyword trigger to override the default language config and make a capture with a different language. Say you have English config, but you're browsing a Spanish webpage and want to capture some text; you don't want to change the config to spanish, you'll just use it this time. You do this by selecting an alternative language on the options displayed, you can filter options by typing the desired language name.
 
 > screencapture gif here
 
@@ -32,7 +32,7 @@ To install Tesseract, run ```brew install tesseract --all-languages```, remove t
 
 ## Configuration
 
-You can select the default language or languages from the workflow config. Run the config with the keyword ```configscreentotext``` and you'll see the first result showing the current languages, and a list of available languages to add or remove; they work as toggle, so I you have one, actioning over it will remove it, and if you don't, it will add it.
+You can select the default language or languages from the workflow config. Run the config with the keyword ```configscreentotext``` and you'll see the first result showing the current languages, and a list of available languages to add or remove; they work as toggle, so I you have one, actioning over it will remove it, and if you don't, it will add it. You can also filter the options by typing the desired language name.
 
 Please keep in mind this is the default Tesseract languages list from the Homebrew install with all the languages, _it's not_ reading the available languages form your system. Optionally you can simply remove the config option from the workflow if you're only using English.
 
