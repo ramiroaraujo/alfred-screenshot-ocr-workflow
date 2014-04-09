@@ -1,175 +1,66 @@
-# Alfred Workflow Ruby Template
+# Alfred Screenshot to Text Workflow
 
-A template for Ruby-based Alfred 2 workflow development. This project was originally a fork of Zhao Cai's (https://github.com/zhaocai/alfred2-ruby-template) but eventually the differences grew a little bigger, plus it has specific ruby dependencies that made my life easier and make it possible to develop for both OS X Mavericks and also previous versions (which have Ruby 1.8 as default system ruby).
+> Work in progress
 
-## Features:
+A handy workflow to convert parts of the screen to text, performing OCR on the captured image.
 
-* Use standard [bundler][gembundler] to easily package, manage, and update ruby gems in the workflow.
-* Uses **rbenv** to manage ruby versions in project, easily switching between Ruby 2.0 (Mavericks) and Ruby 1.8 (pre Mavericks)
-* Friendly exception and debug output to the Mac OS X Console
-* Automate rescue feedback items to alfred when something goes wrong.
-* Automate saving and loading cached feedback
-* Configure basic workflow info directly in the config.yml file and have it updated in the workflow's plist file.
-* Export your Workflow directly through a rake task.
+The workflow is triggered by a shortcut or keyword, prompts the user to capture an area of the screen using the built-in
+screencapture app from OS X, and then performs an OCR on the resulting and sets the result to the clipboard.
 
-> Alfred workflow and feedback related functions are located in a separate [alfred-workflow gem]( https://github.com/zhaocai/alfred-workflow ) which can be easily installed by adding `gem "alfred-workflow"` in the Gemfile.
+The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can installing with homebrew: ```brew install tesseract```
 
-* Functions to easily load and save user configuration (in YAML)
-* Functions for smart case query filter of feedback results.
-* Functions for finding the bundle ID, cache and storage paths, and query arguments.
-* Functions for reading and writing plist files.
-* Functions to simplify generating feedback XML for Alfred.
+## Usage
 
+Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+3```) or the keyword ```screentotext```, and you'll see the default cross icon from OS X screencapture app. Capture the desired region and the OCRed text will be placed back to the clipboard.
 
-## Quick Example
+![capturescreen](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/capturescreen.png)
 
-```ruby
-require_relative "bundle/bundler/setup"
-require "alfred"
+* ```⌘+⇧+4``` to take an area screen capture interactively, or write the keyword ```capture``` and optionally specify a filename.
+* ```⌘+⌃+⇧+4``` to save an area screen capture interactively to the clipboard, or write the keyword ```capture``` and action it while holding control.
 
-Alfred.with_friendly_error do |alfred|
-  fb = alfred.feedback
+![capture](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/capture.png)
 
-  fb.add_file_item(File.expand_path "~/Applications/")
+* ```⌘+⇧+⌥+4``` to take a screen capture of the previously used area, or write the keyword ```capturelast``` and optionally specify a filename.
+* ```⌘+⇧+⌥+⌃+4``` to save a screen capture of the previously used area to the clipboard, or write the keyword ```capturelast``` and action it while holding control.
 
-  puts fb.to_xml()
-end
-```
+![capturelast](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/capturelast.png)
 
-Main code are wrapped in `Alfred.with_friendly_error` block. Exceptions and debug messages are logged to Console log file **~/Library/Logs/Alfred-Workflow.log**.
+As shown in all examples, the keyword version is capable of specifying a name for the captured image.
 
-One more example with rescue feedback automatically generated!
+## Installation
 
-```ruby
-require 'rubygems' unless defined? Gem
-require_relative "bundle/bundler/setup"
-require "alfred"
+For OS X 10.9 Mavericks, Download the [alfred-screencapture-enhancer.alfredworkflow](https://github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/raw/master/alfred-screencapture-enhancer.alfredworkflow) and import to Alfred 2.
 
-def my_code_with_something_goes_wrong
-  true
-end
+For Previous OS X Versions, Download the [alfred-screencapture-enhancer.alfredworkflow](https://github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/raw/pre-mavericks/alfred-screencapture-enhancer.alfredworkflow) and import to Alfred 2.
 
-Alfred.with_friendly_error do |alfred|
-  alfred.with_rescue_feedback = true
+_First_, go to ```System Preferences -> Keyboard```, there to the ```Shortcuts``` tab, select ```Screenshots``` in the left list and uncheck all the shortcuts on the right, as shown below.
 
-  fb = alfred.feedback
+![preferences](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/preferences.png)
 
-  if my_code_with_something_goes_wrong
-    raise Alfred::NoBundleIDError, "Wrong Bundle ID Test!"
-  end
-end
-```
+Then install the workflow and fill the 6 shortcuts with the desired key-combos. The workflow is imported without key combos. It should look like this:
 
-![rescue feedback](https://raw.github.com/ramiroaraujo/alfred-ruby-template/master/screenshots/rescue%20feedback.png)
+![no-shortcuts](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/no-shortcuts.png)
 
+This are the recommended key-combos, the same ones disabled earlier, plus two new ones:
 
-## Requirements
+1. ```⌘+⇧+4```, to capture an area
+2. ```⌘+⌃+⇧+4```, to capture an area to the clipboard
+3. ```⌘+⇧+⌥+4```, to capture the last area
+4. ```⌘+⇧+⌥+⌃+4```, to capture the last area to the clipboard
+5. ```⌘+⇧+3```, to capture the full screen
+6. ```⌘+⌃+⇧+3```, to capture the full screen to the clipboard
 
-You'll need rbenv to manage multiple ruby versions. RVM could work too, but I had terrible issues with gems and native extensions, issues that were instantly resolved when switched to rbenv. Plus, rbenv's local ruby configuration makes it perfect to specify a ruby 2.0 version for a mavericks branch and a ruby 1.8 version for previous OS branch.
+After configuring the shortcuts it should look like this:
 
-If you're using homebrew, you can easily install rbenv by doing ```brew install rbenv ruby-build```. ruby-build will allow you to build different versions of Ruby. If you need to build Ruby 1.8, keep in mind you'll need other dependencies, such as gcc 4.2.
+![shortcuts](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/shortcuts.png)
 
-My approach for developing workflows for Mavericks and pre Mavericks OS is:
 
-```brew install rbenv ruby-build```
+## Configuration
 
-```rbenv install 1.8.7-p375``` (latest 1.8 version, check dependencies!)
+You can configure the _image format_, _base name_, _location_ and _drop shadow_ (in window mode) within the workflow. This procedure is done manually by opening the workflow folder and editing the ```config.yml``` file, the options are self explanatory, but please save a backup of the file before changing it.
 
-```gem install plist bundler``` (template requirements, for recently installed 1.8 version)
+In the future I'll implement the configuration within the workflow.
 
-```rbenv install 2.0.0-p353``` (latest 2.0 version)
+## Changelog
 
-```gem install plist bundler``` (template requirements, for recently installed 2.0 version)
-
-then on a new project, create a mavericks branch (or leave it as master branch) and
-
-copy over the master branch template
-
-run ```rbenv local 2.0.0-p353```, and version the created .ruby-version file
-
-then create a new pre-mavericks branch and
-
-copy over the pre-mavericks branch template
-
-run ```rbenv local 1.8.7-p375```
-
-this way you can switch branches and have a working Ruby 1.8 or 2.0 version. I also recomend to version IDE project files, to have run and debug configuration versioned each to it's specific Ruby version, in my case I'm versioning the Intellij IDEA project and module file.
-
-
-## Quick Start Guide
-
-You may directly download the [alfred-ruby-template workflow]( https://github.com/ramiroaraujo/alfred-ruby-template/raw/master/alfred-ruby-template.alfredworkflow ) here, install, and play with the keywords: `test feedback` and `test rescue feedback`.
-
-### Step 1: Clone or Fork
-
-Clone or fork this repo to your local directory:
-
-`git clone https://github.com/ramiroaraujo/alfred-ruby-template.git`
-
-### Step 2: Config.yml
-Update **domain**, **id**, **name**, **description**, **created_by**, **website** and **readme** in the `config.yml` file.
-
-```yaml
-## workflow build config
-
-# id and name for the workflow (bundle id = domain.id)
-id: alfred-ruby-template
-
-# base domain
-domain: com.tumblr.ramiroaraujo
-
-name: Ruby Based Workflow Template
-description: A starting place for developing Ruby based workflow in Alfred
-created_by: Ramiro Araujo
-website: https://github.com/ramiroaraujo/alfred-ruby-template
-readme: readme
-
-## development config
-
-# path is the relative path to the workflow in the project root
-path: workflow
-
-# If you are using Alfred's advanced Dropbox sync, indicate the path shown in
-# Alfred Preferences > Advanced > Syncing:
-dropbox: ~/Dropbox
-```
-
-### Step 3: Install
-
-Run ```rake bundle:install``` to create the local gems configuration.
-
-Run `rake install` to install the workflow or `rake dbxinstall` if you are using Alfred's advanced Dropbox sync. Now you can see the workflow loaded in the
-Alfred workflow interface.
-
-### Step 4: Add Ruby Gems
-
-Edit **workflow/Gemfile**. Add some gems.
-
-```ruby
-source "https://rubygems.org"
-
-gem "plist"
-gem "alfred-workflow"
-# gem "your-gem-required"
-```
-
-Run `rake bundle:update` to pull the gems into **workflow/bundle/** folder.
-
-### Step 5: Your Code
-
-Now you are good to add your own code based on the previous example.
-
-### Step 6: Export
-
-When your workflow is ready, run ```rake export``` to create a .alfredworkflow packed file (actually just a zip file) in the root of your project, ready for deployment.
-
-
-### Optional Step: Swith between Ruby versions
-
-checkout the proper version and run ```rake clobber``` and then ```rake bundle:install``` to install the proper gems for the new version.
-
-
-## Credits
-
-Although no longer a fork from Zhao Cai's https://github.com/zhaocai/alfred2-ruby-template, it's still heavily influentied by it, both on code and readme file :)
-
+* _2014-04-08_ - Released

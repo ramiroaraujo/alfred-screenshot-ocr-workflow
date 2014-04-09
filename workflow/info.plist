@@ -6,11 +6,44 @@
 	<string>com.tumblr.ramiroaraujo.alfred-screenshot-to-text-workflow</string>
 	<key>connections</key>
 	<dict>
+		<key>07639648-B302-4C4E-AF70-9344304A8613</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>68366A40-701F-4A57-B2BA-E79841302CD5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>34D08079-18E8-49F1-A208-6B0D79382916</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6F3C737E-BC9B-4FAC-9BB3-982FFCDDCE1D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>68366A40-701F-4A57-B2BA-E79841302CD5</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>B8736516-E395-4B3D-8055-97F243B414CB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>6F3C737E-BC9B-4FAC-9BB3-982FFCDDCE1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>899FA592-C7E2-48FF-AC7B-28A555593643</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -39,6 +72,23 @@
 	<string>Screenshot to Text</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>/usr/bin/ruby capture.rb</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>68366A40-701F-4A57-B2BA-E79841302CD5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -82,17 +132,88 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>screentotext</string>
+				<key>subtext</key>
+				<string>select an area of the screen to convert to text</string>
+				<key>text</key>
+				<string>Convert Screen to Text</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>07639648-B302-4C4E-AF70-9344304A8613</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>4</integer>
 				<key>script</key>
-				<string>/usr/bin/ruby capture.rb</string>
+				<string>/usr/bin/ruby config.rb "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>68366A40-701F-4A57-B2BA-E79841302CD5</string>
+			<string>6F3C737E-BC9B-4FAC-9BB3-982FFCDDCE1D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>899FA592-C7E2-48FF-AC7B-28A555593643</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>keyword</key>
+				<string>screentotextconfig</string>
+				<key>script</key>
+				<string>/usr/bin/ruby feedback.rb "{query}"</string>
+				<key>subtext</key>
+				<string>Check current languages and add or remove them</string>
+				<key>title</key>
+				<string>Screen to Text Configuration</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>34D08079-18E8-49F1-A208-6B0D79382916</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -101,10 +222,30 @@
 	<string>readme</string>
 	<key>uidata</key>
 	<dict>
+		<key>07639648-B302-4C4E-AF70-9344304A8613</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>34D08079-18E8-49F1-A208-6B0D79382916</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
 		<key>68366A40-701F-4A57-B2BA-E79841302CD5</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>6F3C737E-BC9B-4FAC-9BB3-982FFCDDCE1D</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>899FA592-C7E2-48FF-AC7B-28A555593643</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>B8736516-E395-4B3D-8055-97F243B414CB</key>
 		<dict>
