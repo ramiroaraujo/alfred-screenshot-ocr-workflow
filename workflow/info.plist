@@ -118,7 +118,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>/usr/bin/ruby capture.rb</string>
+				<string>/usr/bin/ruby capture.rb "{query}"</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>

@@ -31,6 +31,7 @@ Alfred.with_friendly_error do |alfred|
     search.each do |lang|
       fb.add_item({
           :title => "Interpret text as #{lang[:lang]}",
+          :subtitle => '',
           :arg => lang[:key],
           :valid => 'yes',
       })
