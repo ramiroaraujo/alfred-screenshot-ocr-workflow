@@ -14,11 +14,11 @@ The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) 
 
 Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+o```) or the keyword ```screentotext```, and you'll see the default cross icon from OS X screencapture app. Capture the desired region and the OCRed text will be placed back to the clipboard.
 
-> screencapture gif here
+![capture](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-to-text-workflow/master/screenshots/capture.gif)
 
 You can use the keyword trigger to override the default language config and make a capture with a different language. Say you have English config, but you're browsing a Spanish webpage and want to capture some text; you don't want to change the config to spanish, you'll just use it this time. You do this by selecting an alternative language on the options displayed, you can filter options by typing the desired language name.
 
-> screencapture gif here
+![config](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-to-text-workflow/master/screenshots/config.gif)
 
 
 ## Installation
