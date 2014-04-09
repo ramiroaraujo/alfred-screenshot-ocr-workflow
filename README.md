@@ -1,6 +1,6 @@
 # Alfred Screenshot to Text Workflow
 
-> Work in progress
+> Work in progress, dependencies need to be installed
 
 A handy workflow to convert parts of the screen to text, performing OCR on the captured image.
 
@@ -11,7 +11,7 @@ The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) 
 
 ## Usage
 
-Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+3```) or the keyword ```screentotext```, and you'll see the default cross icon from OS X screencapture app. Capture the desired region and the OCRed text will be placed back to the clipboard.
+Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+o```) or the keyword ```screentotext```, and you'll see the default cross icon from OS X screencapture app. Capture the desired region and the OCRed text will be placed back to the clipboard.
 
 ![capturescreen](https://raw.github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/master/screenshots/capturescreen.png)
 
@@ -31,7 +31,7 @@ As shown in all examples, the keyword version is capable of specifying a name fo
 
 For OS X 10.9 Mavericks, Download the [alfred-screencapture-enhancer.alfredworkflow](https://github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/raw/master/alfred-screencapture-enhancer.alfredworkflow) and import to Alfred 2.
 
-For Previous OS X Versions, Download the [alfred-screencapture-enhancer.alfredworkflow](https://github.com/ramiroaraujo/alfred-screencapture-enhancer-workflow/raw/pre-mavericks/alfred-screencapture-enhancer.alfredworkflow) and import to Alfred 2.
+As said previously, I couldn't find a proper way of bundling the Tesseract binary and dependencies to pack them all in the workflow, so you need to have installed Tesseract, preferabily with all the languages, unless only using english.
 
 _First_, go to ```System Preferences -> Keyboard```, there to the ```Shortcuts``` tab, select ```Screenshots``` in the left list and uncheck all the shortcuts on the right, as shown below.
 

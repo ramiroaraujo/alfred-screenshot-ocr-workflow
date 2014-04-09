@@ -78,13 +78,13 @@
 				<key>action</key>
 				<integer>0</integer>
 				<key>argument</key>
-				<integer>0</integer>
+				<integer>3</integer>
 				<key>hotkey</key>
-				<integer>15</integer>
+				<integer>31</integer>
 				<key>hotmod</key>
 				<integer>1703936</integer>
 				<key>hotstring</key>
-				<string>R</string>
+				<string>O</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -116,7 +116,7 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>4</integer>
 				<key>script</key>
 				<string>/usr/bin/ruby capture.rb "{query}"</string>
 				<key>type</key>

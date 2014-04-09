@@ -20,6 +20,7 @@ Alfred.with_friendly_error do |alfred|
   fb.add_item({
       :title => 'Select an area of the screen to convert to text with default languages',
       :subtitle => current_languages,
+      :arg => '',
       :valid => 'yes',
   })
 
