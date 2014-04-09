@@ -15,12 +15,13 @@ Alfred.with_friendly_error do |alfred|
   fb = alfred.feedback
   config = WorkflowConfig.new
 
+  # show current languages
   current_languages = config.get_current_languages
-  current_languages = current_languages.length > 1 ? "Current languages are #{current_languages[0..-2].join(', ')} and #{current_languages.last}" : "Current language is #{current_languages.first}"
+  current_languages_message = config.get_current_languages_message
   fb.add_item({
-      :title => 'Select an area of the screen to convert to text with default languages',
-      :subtitle => current_languages,
-      :valid => 'yes',
+      :title => 'Current languages the OCR looks for',
+      :subtitle => current_languages_message,
+      :valid => 'no',
   })
 
 
@@ -29,9 +30,11 @@ Alfred.with_friendly_error do |alfred|
 
   if search.length
     search.each do |lang|
+      current = current_languages.include? lang[:key]
       fb.add_item({
-          :title => "Interpret text as #{lang[:lang]}",
-          :arg => lang[:key],
+          :title => lang[:lang],
+          :subtitle => current ? "Remove the #{lang[:lang]} language from current languages" : "Add the #{lang[:lang]} language to current languages",
+          :arg => current ? "remove|#{lang[:key]}" : "add|#{lang[:key]}",
           :valid => 'yes',
       })
     end
