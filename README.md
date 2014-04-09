@@ -7,7 +7,7 @@ A handy workflow to convert parts of the screen to text, performing OCR on the c
 The workflow is triggered by a shortcut or keyword, prompts the user to capture an area of the screen using the built-in
 screencapture app from OS X, and then performs an OCR on the resulting and sets the result to the clipboard.
 
-The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can installing with homebrew: ```brew install tesseract```
+The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can installing with homebrew: ```brew install tesseract --all-languages```
 
 
 ## Usage
