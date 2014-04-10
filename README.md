@@ -7,7 +7,7 @@ A handy workflow to convert parts of the screen to text, performing OCR on the c
 The workflow is triggered by a shortcut or keyword, prompts the user to capture an area of the screen using the built-in
 screencapture app from OS X, and then performs an OCR on the resulting image and sets the result to the clipboard.
 
-The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can install with homebrew: ```brew install tesseract --all-languages```
+The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Sadly, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can install with homebrew: ```brew install tesseract --all-languages```
 
 
 ## Usage
@@ -25,7 +25,7 @@ You can use the keyword trigger to override the default language config and make
 
 For OS X 10.9 Mavericks, Download the [alfred-screenshot-ocr.alfredworkflow](https://github.com/ramiroaraujo/alfred-screenshot-ocr-workflow/raw/master/alfred-screenshot-ocr.alfredworkflow) and import to Alfred 2.
 
-As said previously, I couldn't find a proper way of bundling the Tesseract binary and dependencies to pack them all in the workflow, so you need to have installed Tesseract, preferabily with all the languages, unless only using english.
+As said previously, I couldn't find a proper way of bundling the Tesseract binary and dependencies to pack them all in the workflow, so you need to have Tesseract installed, preferably with all the languages, unless only using english.
 
 To install Tesseract, run ```brew install tesseract --all-languages```, remove the ```--all-languages``` if you only need english.
 
