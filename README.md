@@ -5,9 +5,9 @@
 A handy workflow to convert parts of the screen to text, performing OCR on the captured image.
 
 The workflow is triggered by a shortcut or keyword, prompts the user to capture an area of the screen using the built-in
-screencapture app from OS X, and then performs an OCR on the resulting and sets the result to the clipboard.
+screencapture app from OS X, and then performs an OCR on the resulting image and sets the result to the clipboard.
 
-The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can installing with homebrew: ```brew install tesseract --all-languages```
+The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) open source library to perform the actual OCR. Saddily, I still don't know how to bundle all the runtime dependencies together to ship with the workflow, so it currently _only_ works if you have the tesseract application already installed in you system. You can install with homebrew: ```brew install tesseract --all-languages```
 
 
 ## Usage
@@ -32,7 +32,7 @@ To install Tesseract, run ```brew install tesseract --all-languages```, remove t
 
 ## Configuration
 
-You can select the default language or languages from the workflow config. Run the config with the keyword ```configscreentotext``` and you'll see the first result showing the current languages, and a list of available languages to add or remove; they work as toggle, so I you have one, actioning over it will remove it, and if you don't, it will add it. You can also filter the options by typing the desired language name.
+You can select the default language or languages from the workflow config. Run the config with the keyword ```configscreentotext``` and you'll see the first result showing the current languages, and a list of available languages to add or remove; they work as a toggle, so I you have one, actioning over it will remove it, and if you don't, it will add it. You can also filter the options by typing the desired language name.
 
 Please keep in mind this is the default Tesseract languages list from the Homebrew install with all the languages, _it's not_ reading the available languages form your system. Optionally you can simply remove the config option from the workflow if you're only using English.
 
