@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/alfred-screenshot-to-text.iml" filepath="$PROJECT_DIR$/alfred-screenshot-to-text.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alfred-screenshot-ocr.iml" filepath="$PROJECT_DIR$/alfred-screenshot-ocr.iml" />
     </modules>
   </component>
 </project>

@@ -1,4 +1,4 @@
-# Alfred Screenshot to Text Workflow
+# Alfred Screenshot OCR Workflow
 
 > Work in progress, dependencies need to be installed
 
@@ -14,16 +14,16 @@ The workflow uses the [Tesseract OCR](https://code.google.com/p/tesseract-ocr/) 
 
 Trigger the workflow with the registered shortcut (default is ```⌘+⌃+⇧+o```) or the keyword ```screentotext```, and you'll see the default cross icon from OS X screencapture app. Capture the desired region and the OCRed text will be placed back to the clipboard.
 
-![capture](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-to-text-workflow/master/screenshots/capture.gif)
+![capture](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-ocr-workflow/master/screenshots/capture.gif)
 
 You can use the keyword trigger to override the default language config and make a capture with a different language. Say you have English config, but you're browsing a Spanish webpage and want to capture some text; you don't want to change the config to spanish, you'll just use it this time. You do this by selecting an alternative language on the options displayed, you can filter options by typing the desired language name.
 
-![config](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-to-text-workflow/master/screenshots/config.gif)
+![config](https://raw.githubusercontent.com/ramiroaraujo/alfred-screenshot-ocr-workflow/master/screenshots/config.gif)
 
 
 ## Installation
 
-For OS X 10.9 Mavericks, Download the [alfred-screenshot-to-text.alfredworkflow](https://github.com/ramiroaraujo/alfred-screenshot-to-text-workflow/raw/master/alfred-screenshot-to-text.alfredworkflow) and import to Alfred 2.
+For OS X 10.9 Mavericks, Download the [alfred-screenshot-ocr.alfredworkflow](https://github.com/ramiroaraujo/alfred-screenshot-ocr-workflow/raw/master/alfred-screenshot-ocr.alfredworkflow) and import to Alfred 2.
 
 As said previously, I couldn't find a proper way of bundling the Tesseract binary and dependencies to pack them all in the workflow, so you need to have installed Tesseract, preferabily with all the languages, unless only using english.
 
